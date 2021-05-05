@@ -11,6 +11,8 @@
 		F2D04DC626412F7700938EFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D04DC526412F7700938EFC /* ContentView.swift */; };
 		F2D04DC826412F7800938EFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2D04DC726412F7800938EFC /* Assets.xcassets */; };
 		F2D04DCB26412F7800938EFC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2D04DCA26412F7800938EFC /* Preview Assets.xcassets */; };
+		F2D04DD42642AE7900938EFC /* PDFCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D04DD32642AE7900938EFC /* PDFCreator.swift */; };
+		F2D04DD62642AFBB00938EFC /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D04DD52642AFBB00938EFC /* PDFKitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		F2D04DCA26412F7800938EFC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F2D04DCC26412F7800938EFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2D04DCD26412F7800938EFC /* TikZDrawer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TikZDrawer.entitlements; sourceTree = "<group>"; };
+		F2D04DD32642AE7900938EFC /* PDFCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCreator.swift; sourceTree = "<group>"; };
+		F2D04DD52642AFBB00938EFC /* PDFKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 			children = (
 				F2D04DC326412F7700938EFC /* TikZDrawerApp.swift */,
 				F2D04DC526412F7700938EFC /* ContentView.swift */,
+				F2D04DD32642AE7900938EFC /* PDFCreator.swift */,
+				F2D04DD52642AFBB00938EFC /* PDFKitView.swift */,
 				F2D04DC726412F7800938EFC /* Assets.xcassets */,
 				F2D04DCC26412F7800938EFC /* Info.plist */,
 				F2D04DCD26412F7800938EFC /* TikZDrawer.entitlements */,
@@ -140,8 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2D04DD62642AFBB00938EFC /* PDFKitView.swift in Sources */,
 				F2D04DC626412F7700938EFC /* ContentView.swift in Sources */,
 				F2D04DC426412F7700938EFC /* TikZDrawerApp.swift in Sources */,
+				F2D04DD42642AE7900938EFC /* PDFCreator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
