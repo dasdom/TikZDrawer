@@ -4,7 +4,11 @@
 
 import Foundation
 
-struct PDFCreator {
+class PDFCreator {
+  
+  var token: NSObjectProtocol?
+  @Published var standardOut: String = ""
+  
   func create(from text: String, in url: URL) -> URL {
     
     let texString = """
@@ -23,11 +27,26 @@ struct PDFCreator {
     let fileURL = url.appendingPathComponent("texFile.tex")
     try? texString.write(to: fileURL, atomically: true, encoding: .utf8)
     
+    let stdOut = Pipe()
     let pdfTask = Process()
     pdfTask.currentDirectoryURL = url
     pdfTask.launchPath = "/Library/TeX/texbin/pdflatex"
-    pdfTask.arguments = [fileURL.path]
+    pdfTask.arguments = ["-halt-on-error", fileURL.path]
     pdfTask.environment = ["TEXMFOUTPUT": url.path, "TEXINPUTS": "\(url.path):"]
+    pdfTask.standardOutput = stdOut
+    
+    token = NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: stdOut.fileHandleForReading, queue: nil) { note in
+      let handle = note.object as! FileHandle
+      
+      let string = String(data: handle.availableData, encoding: .utf8)
+      if let string = string, false == string.isEmpty {
+        self.standardOut.append(string)
+      }
+      
+      handle.waitForDataInBackgroundAndNotify()
+    }
+    
+    stdOut.fileHandleForReading.waitForDataInBackgroundAndNotify()
     
     pdfTask.launch()
     
@@ -43,6 +62,9 @@ struct PDFCreator {
     
     cropTask.waitUntilExit()
     
+    if let token = token {
+      NotificationCenter.default.removeObserver(token)
+    }
     return pdfURL
   }
 }

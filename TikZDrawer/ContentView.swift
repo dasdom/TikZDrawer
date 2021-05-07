@@ -9,6 +9,7 @@ struct ContentView: View {
   @State var text: String = ""
   @State var filename: String = ""
   @State var pdfView: PDFKitView? = nil
+  let creator = PDFCreator()
   
   var body: some View {
     GeometryReader { geometry in
@@ -16,6 +17,14 @@ struct ContentView: View {
         VStack {
           TextEditor(text: $text)
             .font(.system(size: 11, weight: .regular, design: .monospaced))
+          
+          ScrollView {
+            Text(creator.standardOut)
+              .multilineTextAlignment(.leading)
+              .font(.system(size: 9, weight: .regular, design: .monospaced))
+              .frame(width: geometry.size.width/2 - 13)
+          }
+          .frame(height: geometry.size.height/4)
           
           HStack {
             Button("Run", action: run)
@@ -29,7 +38,7 @@ struct ContentView: View {
           }
         }
         .frame(width: geometry.size.width/2)
-                
+        
         pdfView
       }
       .padding()
@@ -62,7 +71,7 @@ struct ContentView: View {
     
     self.pdfView = PDFKitView(url: nil)
     
-    let pdfURL = PDFCreator().create(from: text, in: url())
+    let pdfURL = creator.create(from: text, in: url())
     
     self.pdfView = PDFKitView(url: pdfURL)
   }
@@ -78,6 +87,15 @@ struct ContentView: View {
     
     do {
       try FileManager.default.copyItem(at: inputPDFURL, to: outputPDFURL)
+    } catch {
+      print("error: \(error)")
+    }
+    
+    let inputTexURL = url().appendingPathComponent("texFile.tex")
+    let outputTexURL = url().appendingPathComponent(filename + ".tex")
+    
+    do {
+      try FileManager.default.copyItem(at: inputTexURL, to: outputTexURL)
     } catch {
       print("error: \(error)")
     }
