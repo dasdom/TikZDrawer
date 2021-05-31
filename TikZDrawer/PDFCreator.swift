@@ -11,11 +11,15 @@ class PDFCreator {
   
   func create(from text: String, in url: URL) -> URL {
     
+    standardOut = ""
+    
     let texString = """
       %!tikz editor 1.0
       \\documentclass{article}
       \\usepackage{tikz}
       \\usepackage{amsmath}
+      \\usetikzlibrary{patterns}
+      \\usetikzlibrary{snakes}
       \\begin{document}
       \\pagestyle{empty}
       \\begin{tikzpicture}
