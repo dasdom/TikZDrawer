@@ -1,6 +1,6 @@
 # TikZDrawer
 
-A mac tool that used an installed LaTeX instance to generate pdf images.
+A mac tool that uses an installed LaTeX instance to generate pdf images.
 
 # Examples
 
